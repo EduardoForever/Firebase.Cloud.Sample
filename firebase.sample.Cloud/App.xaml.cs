@@ -49,7 +49,9 @@ namespace firebase.sample.Cloud
             builder.RegisterType<FirebaseAuthService>().As<IFirebaseAuthService>().SingleInstance();
             builder.Register(componentContext =>
             {
-                return new PlacesService(ApiKeys.FirebasePath);
+                var firebaseAuthService = componentContext.Resolve<IFirebaseAuthService>();
+
+                return new PlacesService(firebaseAuthService, ApiKeys.FirebasePath);
             }).As<IDataStore<Place>>();
 
             builder.RegisterModule(module);

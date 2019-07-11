@@ -7,8 +7,8 @@ namespace Firebase.sample.Cloud.Services.Implementation
 {
     public class PlacesService : FirebaseDataStore<Place>
     {
-        public PlacesService(string path)
-            : base(path)
+        public PlacesService(IFirebaseAuthService firebaseAuthService, string path)
+            : base(firebaseAuthService, path)
         {
         }
     }
